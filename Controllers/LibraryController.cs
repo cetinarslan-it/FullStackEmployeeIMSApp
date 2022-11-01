@@ -23,7 +23,7 @@ namespace FullStackLibraryApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(string name)
+        public IActionResult Search(string name = "")
         {
            List<Library> searchResult= _libraryService.GetByName(name);
             return Ok(searchResult);

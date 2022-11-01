@@ -23,6 +23,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+//For allowing any specific origin CORS
+//app.UseCors(options => options.WithOrigins("https://localhost:44486").AllowAnyMethod());
+
+//For allowing any arigin CORS
+
+app.UseCors(options => options.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true));
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

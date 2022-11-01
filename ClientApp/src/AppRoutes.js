@@ -1,8 +1,6 @@
 import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
-import { MyClassComponent } from "./components/MyComponents/MyClassComponent";
-import { MyFunctionalComponent } from "./components/MyComponents/MyFunctionalComponent";
+import { Library } from "./components/MyComponents/Library";
 
 const AppRoutes = [
   {
@@ -14,16 +12,8 @@ const AppRoutes = [
     element: <Counter />
   },
   {
-    path: '/fetch-data',
-    element: <FetchData />
-  },
-  {
-    path: '/myClassComponent',
-    element: <MyClassComponent />
-  },
-  {
-    path: '/myFunctionalComponent',
-    element: <MyFunctionalComponent />
+    path: '/library',
+    element: <Library />
   }
 ];
 

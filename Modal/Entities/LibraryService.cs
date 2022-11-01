@@ -17,7 +17,8 @@ namespace FullStackLibraryApp.Modal.Entities
 
         public List<Library> GetByName(string name)
         {
-           var linq = from libraries in _context.Libraries select libraries;
+
+            var linq = _context.Libraries.Select(x=>x);
 
             if (!string.IsNullOrWhiteSpace(name))
             
@@ -38,11 +39,12 @@ namespace FullStackLibraryApp.Modal.Entities
 
         public void Delete(Library library)
         {
-            _context.Entry(library).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-            _context.SaveChanges();
+             _context.Entry(library).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+             _context.SaveChanges();
 
-          //  _context.Libraries.Remove(library);
-          //  _context.SaveChanges();
+            // _context.Libraries.Remove(library);
+            //_context.SaveChanges();
+
         }
 
         public Library Save(Library library)

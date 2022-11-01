@@ -4,6 +4,20 @@ import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
 import './custom.css';
 
+/* 
+ import { Home } from './components/Home';
+ ...
+ * 
+ <Layout>
+   <Route exact path='/' component={Home} />
+   <Route path='/counter' component={Counter} />
+   <Route path='/fetch-data' component={FetchData} />
+   <Route path='/myClassComponent' component={MyClassComponent />
+   <Route path='/myFunctionalComponent' component={MyFunctionalComponent} />
+   <Route path='/Library' component={Library} />
+ </Layout>
+ */
+
 export default class App extends Component {
   static displayName = App.name;
 
@@ -15,7 +29,7 @@ export default class App extends Component {
             const { element, ...rest } = route;
             return <Route key={index} {...rest} element={element} />;
           })}
-        </Routes>
+        </Routes>      
       </Layout>
     );
   }
