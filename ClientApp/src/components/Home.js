@@ -7,7 +7,7 @@ export class Home extends Component {
     render() {
         return (
             <div>
-              This is Home Page
+              Go to library!...
             </div>
         );
     }
