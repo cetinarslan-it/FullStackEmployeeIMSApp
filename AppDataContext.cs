@@ -4,8 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FullStackLibraryApp
 {
     public class AppDataContext : DbContext
-    {
-
+    {   
         public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
         {
                 

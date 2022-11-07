@@ -3,7 +3,7 @@ import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import "../Home.css";
 
-export const Library = (props) => {
+export const Employee = (props) => {
 
     /* LIST LIBRARIES */
     const [libraryList, setLibraryList] = useState([]);
@@ -97,20 +97,20 @@ export const Library = (props) => {
     return (
         <div>
             <hr />
-            <h2>Library</h2>
+            <h2>Employee Information Management System (EIMS)</h2>
             <br />
             <div className="row">
                 {/* SEARCH LIBRARY */}
-                <div className="col-md-4">
+                <div className="col-md-12 search-lib">
                     <div className="card border border-secondary shadow-0">
-                        <div className="card-header text-white"><b>Search</b> Library<span className="glyphicon glyphicon-search"></span></div>
+                        <div className="card-header text-white"><b>Search</b> Employee<span className="glyphicon glyphicon-search"></span></div>
                         <div className="card-body">
                             <div className="row">
-                                <div className="col-md-7">
+                                <div className="col-md-10">
                                     <label className="form-label">Name</label>
                                     <input className="form-control" placeholder="Enter Name" name="name" type="text" value={searchName} onChange={handleInputChange.bind(this)} />
                                 </div>
-                                <div className="col-md-5">
+                                <div className="col-md-2">
                                     <label className="form-label">&nbsp;</label>
                                     <div className="btn-toolbar">
                                         <button type="button" className="btn btn-primary form-control" onClick={searchItems.bind(this)}>Search</button>
@@ -121,12 +121,12 @@ export const Library = (props) => {
                     </div>
                 </div>
                 {/* NEW LIBRARY */}
-                <div className="col-md-8">
+                <div className="col-md-12 new-lib">
                     <div className="card border border-secondary shadow-0">
-                        <div className="card-header text-white"><b>New</b> Library</div>
+                        <div className="card-header text-white"><b>New</b> Employee</div>
                         <div className="card-body">
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-md-2">
                                     <label className="form-label">Name</label>
                                     <input className="form-control" placeholder="Enter Name" name="name" value={newLibrary.name} onChange={newLibraryHandler.bind(this)} type="text" />
                                 </div>
@@ -135,8 +135,12 @@ export const Library = (props) => {
                                     <input className="form-control" placeholder="Enter Address" name="address" value={newLibrary.address} onChange={newLibraryHandler.bind(this)} type="text" />
                                 </div>
                                 <div className="col-md-3">
-                                    <label className="form-label">Telephone</label>
-                                    <input className="form-control" placeholder="Enter Telephone" name="telephone" value={newLibrary.telephone} onChange={newLibraryHandler.bind(this)} type="text" />
+                                    <label className="form-label">Telephone-1</label>
+                                    <input className="form-control" placeholder="Enter Telephone-1" name="telephone" value={newLibrary.telephone} onChange={newLibraryHandler.bind(this)} type="text" />
+                                </div>
+                                <div className="col-md-3">
+                                    <label className="form-label">Telephone-2</label>
+                                    <input className="form-control" placeholder="Enter Telephone-2" name="telephone" value={newLibrary.telephone} onChange={newLibraryHandler.bind(this)} type="text" />
                                 </div>
                                 <div className="col-md-2">
                                     <label className="form-label">&nbsp;</label>
@@ -150,7 +154,7 @@ export const Library = (props) => {
             <br />
             {/* DISPLAY LIBRARIES */}
             <div className="card border border-secondary shadow-0">
-                <div className="card-header text-white"><b>Display</b> Libraries</div>
+                <div className="card-header text-white"><b>Display</b> Employees</div>
                 <div className="card-body">
                     <table className="table table-striped">
                         <thead>
