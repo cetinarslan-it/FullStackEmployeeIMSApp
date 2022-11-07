@@ -1,0 +1,16 @@
+﻿.text-center {
+    margin-top: 30vh;
+}
+
+.card-header .btnn-home{
+    background-color:pink;
+}
+
+.card-header{
+    background-color:darkred;
+}
+
+.btn-home {
+    background-color: darkred;
+    border-color: gray;
+}

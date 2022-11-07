@@ -1,23 +1,25 @@
 ﻿import React, { useState } from 'react';
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import "../Home.css";
 
 export const Library = (props) => {
 
     /* LIST LIBRARIES */
-    const [librariesList, setLibrariesList] = useState([]);
+    const [libraryList, setLibraryList] = useState([]);
 
     /* SEARCH */
-    const [searchParameterName, setSearchParameterName] = useState('');
+    const [searchName, setSearchName] = useState('');
     const handleInputChange = (event) => {
-        setSearchParameterName(event.target.value.toString());
+        setSearchName(event.target.value.toString());
     }
     const searchItems = () => {
-        let URL = searchParameterName != "" ? ("https://localhost:7261/api/Library/Search?name=" + searchParameterName)
+        let URL = searchName !== "" ? ("https://localhost:7261/api/Library/Search?name=" + searchName)
                                             : "https://localhost:7261/api/Library/GetAll";
+        setSearchName("");
         axios.get(URL).then(response => {
             response.data.map(item => { item.isEditing = false; })
-            setLibrariesList(response.data);
+            setLibraryList(response.data);
         }).catch(error => {
             setAlertErrorMessage(error.message);
             setShowAlertError(true);
@@ -25,19 +27,19 @@ export const Library = (props) => {
     }
 
     /* UPDATE */
-    const handleLibraryInputChange = (prLibrary, prInput) => {
-        let librariesNewReference = [...librariesList]; // Create a copy of the object with new reference (new space in memory)
+    const handleLibraryInputChange = (prLibrary, event) => {
+        let librariesNewReference = [...libraryList]; // Create a copy of the object with new reference (new space in memory)
         const index = librariesNewReference.findIndex((item) => item.name == prLibrary.name);
-        const { name, value } = prInput.target; // Get the NAME and VALUE of the property changed
+        const { name, value } = event.target; // Get the NAME and VALUE of the property changed
         librariesNewReference[index] = { ...prLibrary, [name]: value }; // Update just the specific property keeping the others
-        setLibrariesList(librariesNewReference);
+        setLibraryList(librariesNewReference);
     }
     const updateEditingStatus = (prLibrary, prFlag) => {
         try {
-            let librariesNewReference = [...librariesList]; // Create a copy of the object with new reference (new space in memory)
+            let librariesNewReference = [...libraryList]; // Create a copy of the object with new reference (new space in memory)
             const index = librariesNewReference.findIndex((item) => item.name == prLibrary.name);
             librariesNewReference[index].isEditing = prFlag;
-            setLibrariesList(librariesNewReference);
+            setLibraryList(librariesNewReference);
         }
         catch (error) {
             setAlertErrorMessage(error.message);
@@ -46,11 +48,11 @@ export const Library = (props) => {
     }
     const confirmUpdate = (prLibrary) => {
         axios.put("https://localhost:7261/api/Library/UpdateLibrary", prLibrary).then(response => {
-            let librariesNewReference = [...librariesList]; // Create a copy of the object with new reference (new space in memory)
+            let librariesNewReference = [...libraryList]; // Create a copy of the object with new reference (new space in memory)
             const index = librariesNewReference.findIndex((item) => item.name == prLibrary.name);
             librariesNewReference[index] = prLibrary;
             librariesNewReference[index].isEditing = false;
-            setLibrariesList(librariesNewReference);
+            setLibraryList(librariesNewReference);
         }).catch(error => {
             setAlertErrorMessage(error.message);
             setShowAlertError(true);
@@ -58,18 +60,18 @@ export const Library = (props) => {
     }
 
     /* INSERT */
-    const [libraryToAdd, setLibraryToAdd] = useState({ name: '', address: '', telephone: '' });
-    const handleLibraryToAddInputChange = (prInput) => {
-        const { name, value } = prInput.target;
-        let libraryToAddNewReference = { ...libraryToAdd, [name]: value };
-        setLibraryToAdd(libraryToAddNewReference);
+    const [newLibrary, setNewLibrary] = useState({ name: '', address: '', telephone: '' });
+    const newLibraryHandler = (event) => {
+        const { name, value } = event.target;
+        let newLibraryRef = { ...newLibrary, [name]: value };
+        setNewLibrary(newLibraryRef);
     }
     const confirmNewLibrary = () => {
-        axios.post("https://localhost:7261/api/Library/AddNewLibrary", libraryToAdd).then(response => {
-            let librariesNewReference = [...librariesList];
+        axios.post("https://localhost:7261/api/Library/AddNewLibrary", newLibrary).then(response => {
+            let librariesNewReference = [...libraryList];
             librariesNewReference.push(response.data);
-            setLibrariesList(librariesNewReference);
-            setLibraryToAdd({ name: '', address: '', telephone: '' }); // Clear the state
+            setLibraryList(librariesNewReference);
+            setNewLibrary({ name: '', address: '', telephone: '' }); // Clear the state
             setShowAlertNewLibrary(true);
         }).catch(error => {
             setAlertErrorMessage(error.message);
@@ -79,11 +81,11 @@ export const Library = (props) => {
 
     /* DELETE */
     const deleteLibrary = (prLibrary) => {
-        axios.delete("https://localhost:7261/api/Library/DeleteLibrary", { data: prLibrary }).then(response => {
-            let librariesNewReference = [...librariesList];
+        axios.delete("https://localhost:7261/api/Library/DeleteLibrary", { data: prLibrary }).then(() => {
+            let librariesNewReference = [...libraryList];
             const index = librariesNewReference.findIndex((item) => item.name == prLibrary.name);
             librariesNewReference.splice(index, 1); // Remove item from list
-            setLibrariesList(librariesNewReference);
+            setLibraryList(librariesNewReference);
         })
     }
 
@@ -101,12 +103,12 @@ export const Library = (props) => {
                 {/* SEARCH LIBRARY */}
                 <div className="col-md-4">
                     <div className="card border border-secondary shadow-0">
-                        <div className="card-header bg-secondary text-white"><b>Search</b> Library<span className="glyphicon glyphicon-search"></span></div>
+                        <div className="card-header text-white"><b>Search</b> Library<span className="glyphicon glyphicon-search"></span></div>
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-md-7">
                                     <label className="form-label">Name</label>
-                                    <input className="form-control" placeholder="Enter Name" name="name" type="text" value={searchParameterName} onChange={handleInputChange.bind(this)} />
+                                    <input className="form-control" placeholder="Enter Name" name="name" type="text" value={searchName} onChange={handleInputChange.bind(this)} />
                                 </div>
                                 <div className="col-md-5">
                                     <label className="form-label">&nbsp;</label>
@@ -121,20 +123,20 @@ export const Library = (props) => {
                 {/* NEW LIBRARY */}
                 <div className="col-md-8">
                     <div className="card border border-secondary shadow-0">
-                        <div className="card-header bg-secondary text-white"><b>New</b> Library</div>
+                        <div className="card-header text-white"><b>New</b> Library</div>
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-md-3">
                                     <label className="form-label">Name</label>
-                                    <input className="form-control" placeholder="Enter Name" name="name" value={libraryToAdd.name} onChange={handleLibraryToAddInputChange.bind(this)} type="text" />
+                                    <input className="form-control" placeholder="Enter Name" name="name" value={newLibrary.name} onChange={newLibraryHandler.bind(this)} type="text" />
                                 </div>
                                 <div className="col-md-4">
                                     <label className="form-label">Address</label>
-                                    <input className="form-control" placeholder="Enter Address" name="address" value={libraryToAdd.address} onChange={handleLibraryToAddInputChange.bind(this)} type="text" />
+                                    <input className="form-control" placeholder="Enter Address" name="address" value={newLibrary.address} onChange={newLibraryHandler.bind(this)} type="text" />
                                 </div>
                                 <div className="col-md-3">
                                     <label className="form-label">Telephone</label>
-                                    <input className="form-control" placeholder="Enter Telephone" name="telephone" value={libraryToAdd.telephone} onChange={handleLibraryToAddInputChange.bind(this)} type="text" />
+                                    <input className="form-control" placeholder="Enter Telephone" name="telephone" value={newLibrary.telephone} onChange={newLibraryHandler.bind(this)} type="text" />
                                 </div>
                                 <div className="col-md-2">
                                     <label className="form-label">&nbsp;</label>
@@ -148,7 +150,7 @@ export const Library = (props) => {
             <br />
             {/* DISPLAY LIBRARIES */}
             <div className="card border border-secondary shadow-0">
-                <div className="card-header bg-secondary text-white"><b>Display</b> Libraries</div>
+                <div className="card-header text-white"><b>Display</b> Libraries</div>
                 <div className="card-body">
                     <table className="table table-striped">
                         <thead>
@@ -160,7 +162,7 @@ export const Library = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {librariesList.map(item =>
+                            {libraryList.map(item =>
                                 <tr key={item.name}>
                                     <td><input className="form-control" value={item.name} onChange={handleLibraryInputChange.bind(this, item)} name="name" disabled={!item.isEditing} /></td>
                                     <td><input className="form-control" value={item.address} onChange={handleLibraryInputChange.bind(this, item)} name="address" disabled={!item.isEditing} /></td>

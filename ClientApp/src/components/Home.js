@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./Home.css";
 
 
 export class Home extends Component {
@@ -6,8 +7,11 @@ export class Home extends Component {
 
     render() {
         return (
-            <div>
-              Go to library!...
+            <div className="text-center" >
+                <h1>Welcome to my Library...</h1>
+                <hr></hr>
+                <br/>
+                <button className="btn btn-home"> <a href="/library" style={{ textDecoration: "none", color: "ghostwhite", fontWeight: "bold" }}>Click here <br></br> to visit  the library </a></button>
             </div>
         );
     }
