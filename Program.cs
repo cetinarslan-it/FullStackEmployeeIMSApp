@@ -1,6 +1,6 @@
-using FullStackLibraryApp;
-using FullStackLibraryApp.CustomMiddleware;
-using FullStackLibraryApp.Modal.Entities;
+using EmployeeMISApp;
+using EmployeeMISApp.CustomMiddleware;
+using EmployeeMISApp.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<ILibraryService, LibraryService>();
-//builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FullStackLibrary")));
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+//builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FullStackEmployee")));
 builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddSwaggerGen(c =>
 {

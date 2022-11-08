@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FullStackLibraryApp.Modal.Entities
+namespace EmployeeMISApp.Model.Entities
 {
-    [Table("Library")]
-    public class Library
+    [Table("Employee")]
+    public class Employee
     {
         [Key]
         public int Id { get; set; }

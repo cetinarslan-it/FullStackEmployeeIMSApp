@@ -2,14 +2,14 @@
 
 #nullable disable
 
-namespace FullStackLibraryApp.Migrations
+namespace EmployeeMISApp.Migrations
 {
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Library",
+                name: "Employee",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -20,14 +20,14 @@ namespace FullStackLibraryApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Library", x => x.Id);
+                    table.PrimaryKey("PK_Employee", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Library");
+                name: "Employee");
         }
     }
 }

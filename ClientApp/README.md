@@ -56,7 +56,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [Version Control Integration](#version-control-integration)
   - [Writing Tests](#writing-tests)
   - [Testing Components](#testing-components)
-  - [Using Third Party Assertion Libraries](#using-third-party-assertion-libraries)
+  - [Using Third Party Assertion Employees](#using-third-party-assertion-employees)
   - [Initializing Test Environment](#initializing-test-environment)
   - [Focusing and Excluding Tests](#focusing-and-excluding-tests)
   - [Coverage Reporting](#coverage-reporting)
@@ -342,7 +342,7 @@ You can find the source HTML file in the `public` folder of the generated projec
 
 Note that normally you wouldn’t edit files in the `public` folder very often. For example, [adding a stylesheet](#adding-a-stylesheet) is done without touching the HTML.
 
-If you need to dynamically update the page title based on the content, you can use the browser [`document.title`](https://developer.mozilla.org/en-US/docs/Web/API/Document/title) API. For more complex scenarios when you want to change the title from React components, you can use [React Helmet](https://github.com/nfl/react-helmet), a third party library.
+If you need to dynamically update the page title based on the content, you can use the browser [`document.title`](https://developer.mozilla.org/en-US/docs/Web/API/Document/title) API. For more complex scenarios when you want to change the title from React components, you can use [React Helmet](https://github.com/nfl/react-helmet), a third party employee.
 
 If you use a custom server for your app in production and want to modify the title before it gets sent to the browser, you can follow advice in [this section](#generating-dynamic-meta-tags-on-the-server). Alternatively, you can pre-build each page as a static HTML file which then loads the JavaScript bundle, which is covered [here](#pre-rendering-into-static-html-files).
 
@@ -360,7 +360,7 @@ Alternatively you may use `yarn`:
 yarn add react-router
 ```
 
-This works for any library, not just `react-router`.
+This works for any employee, not just `react-router`.
 
 ## Importing a Component
 
@@ -722,7 +722,7 @@ The `public` folder is useful as a workaround for a number of less common cases:
 * You need a file with a specific name in the build output, such as [`manifest.webmanifest`](https://developer.mozilla.org/en-US/docs/Web/Manifest).
 * You have thousands of images and need to dynamically reference their paths.
 * You want to include a small script like [`pace.js`](http://github.hubspot.com/pace/docs/welcome/) outside of the bundled code.
-* Some library may be incompatible with Webpack and you have no other option but to include it as a `<script>` tag.
+* Some employee may be incompatible with Webpack and you have no other option but to include it as a `<script>` tag.
 
 Note that if you add a `<script>` that declares global variables, you also need to read the next section on using them.
 
@@ -742,7 +742,7 @@ Alternatively, you can force the linter to ignore any line by adding `// eslint-
 
 ## Adding Bootstrap
 
-You don’t have to use [Reactstrap](https://reactstrap.github.io/) together with React but it is a popular library for integrating Bootstrap with React apps. If you need it, you can integrate it with Create React App by following these steps:
+You don’t have to use [Reactstrap](https://reactstrap.github.io/) together with React but it is a popular employee for integrating Bootstrap with React apps. If you need it, you can integrate it with Create React App by following these steps:
 
 Install Reactstrap and Bootstrap from npm. React Bootstrap does not include Bootstrap CSS so this needs to be installed as well:
 
@@ -934,7 +934,7 @@ these defined as well. Consult their documentation how to do this. For example, 
 
 ## Can I Use Decorators?
 
-Many popular libraries use [decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841) in their documentation.<br>
+Many popular employees use [decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841) in their documentation.<br>
 Create React App doesn’t support decorator syntax at the moment because:
 
 * It is an experimental proposal and is subject to change.
@@ -1093,7 +1093,7 @@ If you’re using a WebSocket engine like [Socket.io](https://socket.io/), you m
 
 There’s some good documentation available for [setting up a Socket.io server](https://socket.io/docs/).
 
-Standard WebSockets **will** work with a standard WebSocket server as well as the websocket.org echo test. You can use libraries like [ws](https://github.com/websockets/ws) for the server, with [native WebSockets in the browser](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket).
+Standard WebSockets **will** work with a standard WebSocket server as well as the websocket.org echo test. You can use employees like [ws](https://github.com/websockets/ws) for the server, with [native WebSockets in the browser](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket).
 
 Either way, you can proxy WebSocket requests manually in `package.json`:
 
@@ -1316,7 +1316,7 @@ it('renders welcome message', () => {
 ```
 
 All Jest matchers are [extensively documented here](http://facebook.github.io/jest/docs/en/expect.html).<br>
-Nevertheless you can use a third-party assertion library like [Chai](http://chaijs.com/) if you want to, as described below.
+Nevertheless you can use a third-party assertion employee like [Chai](http://chaijs.com/) if you want to, as described below.
 
 Additionally, you might find [jest-enzyme](https://github.com/blainekasten/enzyme-matchers) helpful to simplify your tests with readable matchers. The above `contains` code can be written simpler with jest-enzyme.
 
@@ -1342,11 +1342,11 @@ Import it in [`src/setupTests.js`](#initializing-test-environment) to make its m
 import 'jest-enzyme';
 ```
 
-### Using Third Party Assertion Libraries
+### Using Third Party Assertion Employees
 
 We recommend that you use `expect()` for assertions and `jest.fn()` for spies. If you are having issues with them please [file those against Jest](https://github.com/facebook/jest/issues/new), and we’ll fix them. We intend to keep making them better for React, supporting, for example, [pretty-printing React elements as JSX](https://github.com/facebook/jest/pull/1566).
 
-However, if you are used to other libraries, such as [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/), or if you have existing code using them that you’d like to port over, you can import them normally like this:
+However, if you are used to other employees, such as [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/), or if you have existing code using them that you’d like to port over, you can import them normally like this:
 
 ```js
 import sinon from 'sinon';
@@ -1546,7 +1546,7 @@ You can also deploy your Storybook or style guide as a static app. This way, eve
 
 ### Getting Started with Storybook
 
-Storybook is a development environment for React UI components. It allows you to browse a component library, view the different states of each component, and interactively develop and test components.
+Storybook is a development environment for React UI components. It allows you to browse a component employee, view the different states of each component, and interactively develop and test components.
 
 First, install the following npm package globally:
 
@@ -2164,7 +2164,7 @@ brew reinstall watchman
 
 You can find [other installation methods](https://facebook.github.io/watchman/docs/install.html#build-install) on the Watchman documentation page.
 
-If this still doesn’t help, try running `launchctl unload -F ~/Library/LaunchAgents/com.github.facebook.watchman.plist`.
+If this still doesn’t help, try running `launchctl unload -F ~/Employee/LaunchAgents/com.github.facebook.watchman.plist`.
 
 There are also reports that *uninstalling* Watchman fixes the issue. So if nothing else helps, remove it from your system and try again.
 
@@ -2215,7 +2215,7 @@ Some third-party packages don't compile their code to ES5 before publishing to n
 To resolve this:
 
 1. Open an issue on the dependency's issue tracker and ask that the package be published pre-compiled.
-  * Note: Create React App can consume both CommonJS and ES modules. For Node.js compatibility, it is recommended that the main entry point is CommonJS. However, they can optionally provide an ES module entry point with the `module` field in `package.json`. Note that **even if a library provides an ES Modules version, it should still precompile other ES6 features to ES5 if it intends to support older browsers**.
+  * Note: Create React App can consume both CommonJS and ES modules. For Node.js compatibility, it is recommended that the main entry point is CommonJS. However, they can optionally provide an ES module entry point with the `module` field in `package.json`. Note that **even if a employee provides an ES Modules version, it should still precompile other ES6 features to ES5 if it intends to support older browsers**.
 
 2. Fork the package and publish a corrected version yourself. 
 

@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "FullStackLibraryApp": {
+    "EmployeeMISApp": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7261;http://localhost:5261",

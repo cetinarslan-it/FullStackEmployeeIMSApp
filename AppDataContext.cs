@@ -1,7 +1,7 @@
-﻿using FullStackLibraryApp.Modal.Entities;
+﻿using EmployeeMISApp.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FullStackLibraryApp
+namespace EmployeeMISApp
 {
     public class AppDataContext : DbContext
     {   
@@ -10,6 +10,6 @@ namespace FullStackLibraryApp
                 
         }
 
-        public DbSet<Library> Libraries { get; set; }
+        public DbSet<Employee> Employees{ get; set; }
     }
 }

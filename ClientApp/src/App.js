@@ -14,7 +14,7 @@ import './custom.css';
    <Route path='/fetch-data' component={FetchData} />
    <Route path='/myClassComponent' component={MyClassComponent />
    <Route path='/myFunctionalComponent' component={MyFunctionalComponent} />
-   <Route path='/Library' component={Library} />
+   <Route path='/Employee' component={Employee} />
  </Layout>
  */
 
