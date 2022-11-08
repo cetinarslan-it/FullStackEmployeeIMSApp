@@ -1,44 +1,59 @@
-import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 import './NavMenu.css';
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+export const NavMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  constructor (props) {
-    super(props);
+  const toggle = () => setIsOpen(!isOpen);
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-      collapsed: true
-    };
-  }
-
-  toggleNavbar () {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
-
-  render() {
-    return (
-      <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-          <NavbarBrand tag={Link} to="/">EmployeeIMSApp</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-            <ul className="navbar-nav flex-grow">
+  return (
+      <div
+        style={{
+          display: "block",
+          width: "100%",
+          margin: "auto",
+        }}      
+      >
+        <Navbar dark expand="md" style={{backgroundColor:"darkred" }} fixed="top">
+          <NavbarBrand href="/">Employee Information Management System (EIMS)</NavbarBrand>
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar >
+            <Nav className="ms-auto" navbar>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
+                <NavLink href="/">Home</NavLink>
               </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Employee
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem >
+                      <NavLink style={{color:"black"}} href="/employeeAdd">Add</NavLink>
+                  </DropdownItem>
+                  <DropdownItem >
+                     <NavLink style={{color:"black"}} href="/employeeList">List</NavLink>
+                  </DropdownItem>
+                </DropdownMenu>                
+              </UncontrolledDropdown>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/employee">Employee</NavLink>
-              </NavItem>        
-            </ul>
+                <NavLink href="/login">Log out</NavLink>
+              </NavItem>
+            </Nav>
           </Collapse>
         </Navbar>
-      </header>
-    );
-  }
-}
+      </div>
+  );
+};

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeIMSApp.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20221107163820_Initial")]
+    [Migration("20221108103448_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

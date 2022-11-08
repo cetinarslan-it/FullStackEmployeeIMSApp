@@ -1,33 +1,30 @@
-﻿import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react'
 import axios from 'axios';
-import SweetAlert from 'react-bootstrap-sweetalert';
-import "../Home.css";
+import SweetAlert from "react-bootstrap-sweetalert";
 
-export const Employee = (props) => {
+export const EmployeeList = () => {
 
-    /* LIST LIBRARIES */
-    const [employeeList, setEmployeeList] = useState([]);
+     /* LIST LIBRARIES */
+      const [employeeList, setEmployeeList] = useState([]); 
 
-    /* SEARCH */
-    const [searchName, setSearchName] = useState('');
-    const handleInputChange = (event) => {
-        setSearchName(event.target.value.toString());
-    }
-    const searchItems = () => {
-        let URL = searchName !== "" ? ("https://localhost:7261/api/Employee/Search?name=" + searchName)
-                                            : "https://localhost:7261/api/Employee/GetAll";
-        setSearchName("");
-        axios.get(URL).then(response => {
+useEffect(() => {
+    
+    const getEmployees = () => {
+        axios.get("https://localhost:7261/api/Employee/GetAll").then(response => {
             response.data.map(item => { item.isEditing = false; })
             setEmployeeList(response.data);
         }).catch(error => {
             setAlertErrorMessage(error.message);
             setShowAlertError(true);
         });
-    }
+    };
 
-    /* UPDATE */
-    const handleEmployeeInputChange = (prEmployee, event) => {
+    getEmployees();
+ 
+  }, [])
+
+      /* UPDATE */
+      const handleEmployeeInputChange = (prEmployee, event) => {
         let employeesNewReference = [...employeeList]; // Create a copy of the object with new reference (new space in memory)
         const index = employeesNewReference.findIndex((item) => item.name == prEmployee.name);
         const { name, value } = event.target; // Get the NAME and VALUE of the property changed
@@ -69,38 +66,14 @@ export const Employee = (props) => {
         })
     }
 
-    /* ALERTS */
-    const [showAlertNewEmployee, setShowAlertNewEmployee] = useState(false);
-    const [showAlertError, setShowAlertError] = useState(false);
-    const [alertErrorMessage, setAlertErrorMessage] = useState('');
+        /* ALERTS */
+        const [showAlertError, setShowAlertError] = useState(false);
+        const [alertErrorMessage, setAlertErrorMessage] = useState('');
 
-    return (
-        <div style={{marginTop:"10vh"}}>
-            <div className="row">
-                {/* SEARCH LIBRARY */}
-                <div className="col-md-12 search-lib">
-                    <div className="card border border-secondary shadow-0">
-                        <div className="card-header text-white"><b>Search</b> Employee<span className="glyphicon glyphicon-search"></span></div>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-10">
-                                    <label className="form-label">Name</label>
-                                    <input className="form-control" placeholder="Enter Name" name="name" type="text" value={searchName} onChange={handleInputChange.bind(this)} />
-                                </div>
-                                <div className="col-md-2">
-                                    <label className="form-label">&nbsp;</label>
-                                    <div className="btn-toolbar">
-                                        <button type="button" className="btn btn-primary form-control" onClick={searchItems.bind(this)}>Search</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            <br />
-            {/* DISPLAY LIBRARIES */}
-            <div className="card border border-secondary shadow-0">
+  return (
+    <div>
+       {/* DISPLAY LIBRARIES */}
+       <div className="card border border-secondary shadow-0" style={{marginTop:"10vh"}}>
                 <div className="card-header text-white"><b>Display</b> Employees</div>
                 <div className="card-body">
                     <table className="table table-striped">
@@ -132,30 +105,7 @@ export const Employee = (props) => {
                     </table>
                 </div>
             </div>
-
-            {/* ALERT LIBRARY ADDED */}
-            {showAlertNewEmployee &&
-                <SweetAlert success
-                    confirmBtnText="Ok"
-                    confirmBtnBsStyle="success"
-                    title="Item successfully added!"
-                    onConfirm={() => setShowAlertNewEmployee(false)} >
-                    Please click "OK" to close
-                </SweetAlert>
-            }
-
-            {/* ALERT ERROR */}
-            {showAlertError &&
-                <SweetAlert danger
-                    confirmBtnText="Ok"
-                    confirmBtnBsStyle="success"
-                    title="Something wrong happened..."
-                    onConfirm={() => setShowAlertError(false)} >
-                    {alertErrorMessage}
-                </SweetAlert>
-            }
-
-        </div>
-    )
-
+    </div>
+  )
 }
+

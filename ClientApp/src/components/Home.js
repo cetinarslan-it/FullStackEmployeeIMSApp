@@ -8,7 +8,7 @@ export class Home extends Component {
     render() {
         return (
             <div className="text-center" >
-                <h1>Welcome to my Employee...</h1>
+                <h1>Welcome to Employee Information Management System</h1>
                 <hr></hr>
                 <br/>
                 <button className="btn btn-home"> <a href="/employee" style={{ textDecoration: "none", color: "ghostwhite", fontWeight: "bold" }}>Click here <br></br> to visit  the employee </a></button>
