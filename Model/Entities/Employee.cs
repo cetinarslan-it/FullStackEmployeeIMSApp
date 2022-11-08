@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EmployeeMISApp.Model.Entities
+namespace EmployeeIMSApp.Model.Entities
 {
     [Table("Employee")]
     public class Employee

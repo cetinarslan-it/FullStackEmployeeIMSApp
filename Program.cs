@@ -1,6 +1,6 @@
-using EmployeeMISApp;
-using EmployeeMISApp.CustomMiddleware;
-using EmployeeMISApp.Model.Entities;
+using EmployeeIMSApp;
+using EmployeeIMSApp.CustomMiddleware;
+using EmployeeIMSApp.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,8 +1,8 @@
-﻿using EmployeeMISApp.Model.Entities;
+﻿using EmployeeIMSApp.Model.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-namespace EmployeeMISApp.Controllers
+namespace EmployeeIMSApp.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]

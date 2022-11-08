@@ -1,7 +1,7 @@
-﻿using EmployeeMISApp.Model.Entities;
+﻿using EmployeeIMSApp.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EmployeeMISApp
+namespace EmployeeIMSApp
 {
     public class AppDataContext : DbContext
     {   

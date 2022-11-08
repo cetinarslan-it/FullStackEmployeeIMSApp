@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace EmployeeMISApp.Migrations
+namespace EmployeeIMSApp.Migrations
 {
     public partial class Initial : Migration
     {

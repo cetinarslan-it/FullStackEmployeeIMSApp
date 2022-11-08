@@ -1,4 +1,4 @@
-﻿namespace EmployeeMISApp.Model.Entities
+﻿namespace EmployeeIMSApp.Model.Entities
 {
     public interface IEmployeeService
     {

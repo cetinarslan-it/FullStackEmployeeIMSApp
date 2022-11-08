@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace EmployeeMISApp.Model.Entities
+namespace EmployeeIMSApp.Model.Entities
 {
     public class EmployeeService : IEmployeeService
     {
