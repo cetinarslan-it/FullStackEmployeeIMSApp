@@ -33,7 +33,7 @@ export const NavMenu = () => {
           <Collapse isOpen={isOpen} navbar >
             <Nav className="ms-auto" navbar>
               <NavItem>
-                <NavLink href="/">Home</NavLink>
+                <NavLink href="/employee">Home</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -49,7 +49,7 @@ export const NavMenu = () => {
                 </DropdownMenu>                
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="/login">Log out</NavLink>
+                <NavLink href="/">Log out</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

@@ -44,7 +44,7 @@ export const EmployeeAdd = () => {
       <div style={{marginTop:"10vh"}}>
         <div className="col-md-12 new-lib">
           <div className="card border border-secondary shadow-0">
-            <div className="card-header text-white">
+            <div className="card-header text-white bg-primary">
               <b>New</b> Employee
             </div>
             <div className="card-body">

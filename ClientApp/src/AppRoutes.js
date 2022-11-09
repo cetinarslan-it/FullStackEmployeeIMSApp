@@ -1,4 +1,4 @@
-import { Home } from "./components/Home";
+import { Home } from "./components/MyComponents/Login";
 import { Employee } from "./components/MyComponents/Employee";
 import { EmployeeAdd } from "./components/MyComponents/EmployeeAdd";
 import { EmployeeList } from "./components/MyComponents/EmployeeList";
@@ -8,11 +8,7 @@ import { Login } from "./components/MyComponents/Login";
 const AppRoutes = [
   {
     index: true,
-    element: <Home/>
-  },
-  {
-    path: '/login',
-    element: <Login />
+    element: <Login/>
   },
   {
     path: '/employee',

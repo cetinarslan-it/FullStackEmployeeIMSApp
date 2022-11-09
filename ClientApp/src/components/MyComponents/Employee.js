@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import "../Home.css";
+import "./Login.css";
 
 export const Employee = (props) => {
 
@@ -10,6 +10,7 @@ export const Employee = (props) => {
 
     /* SEARCH */
     const [searchName, setSearchName] = useState('');
+    
     const handleInputChange = (event) => {
         setSearchName(event.target.value.toString());
     }
@@ -80,7 +81,7 @@ export const Employee = (props) => {
                 {/* SEARCH LIBRARY */}
                 <div className="col-md-12 search-lib">
                     <div className="card border border-secondary shadow-0">
-                        <div className="card-header text-white"><b>Search</b> Employee<span className="glyphicon glyphicon-search"></span></div>
+                        <div className="card-header text-white bg-primary" ><b>Search</b> Employee<span className="glyphicon glyphicon-search"></span></div>
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-md-10">
@@ -101,7 +102,7 @@ export const Employee = (props) => {
             <br />
             {/* DISPLAY LIBRARIES */}
             <div className="card border border-secondary shadow-0">
-                <div className="card-header text-white"><b>Display</b> Employees</div>
+                <div className="card-header text-white bg-primary"><b>Display</b> Employees</div>
                 <div className="card-body">
                     <table className="table table-striped">
                         <thead>

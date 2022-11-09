@@ -74,7 +74,7 @@ useEffect(() => {
     <div>
        {/* DISPLAY LIBRARIES */}
        <div className="card border border-secondary shadow-0" style={{marginTop:"10vh"}}>
-                <div className="card-header text-white"><b>Display</b> Employees</div>
+                <div className="card-header text-white bg-primary"><b>Display</b> Employees</div>
                 <div className="card-body">
                     <table className="table table-striped">
                         <thead>
