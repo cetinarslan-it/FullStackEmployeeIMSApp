@@ -1,4 +1,6 @@
-﻿namespace EmployeeIMSApp.Model.Entities
+﻿using EmployeeIMSApp.Model.Entities;
+
+namespace EmployeeIMSApp.Services
 {
     public interface IEmployeeService
     {

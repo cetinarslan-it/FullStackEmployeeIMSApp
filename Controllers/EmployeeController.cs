@@ -1,6 +1,6 @@
-﻿using EmployeeIMSApp.Model.Entities;
+﻿using EmployeeIMSApp.Services;
+using EmployeeIMSApp.Model.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace EmployeeIMSApp.Controllers
 {

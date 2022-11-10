@@ -1,4 +1,3 @@
-import { Home } from "./components/MyComponents/Login";
 import { Employee } from "./components/MyComponents/Employee";
 import { EmployeeAdd } from "./components/MyComponents/EmployeeAdd";
 import { EmployeeList } from "./components/MyComponents/EmployeeList";
