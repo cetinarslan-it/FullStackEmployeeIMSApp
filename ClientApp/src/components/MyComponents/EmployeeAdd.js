@@ -72,21 +72,10 @@ export const EmployeeAdd = () => {
                   />
                 </div>
                 <div className="col-md-3">
-                  <label className="form-label">Telephone-1</label>
+                  <label className="form-label">Telephone</label>
                   <input
                     className="form-control"
                     placeholder="Enter Telephone-1"
-                    name="telephone"
-                    value={newEmployee.telephone}
-                    onChange={newEmployeeHandler.bind(this)}
-                    type="text"
-                  />
-                </div>
-                <div className="col-md-3">
-                  <label className="form-label">Telephone-2</label>
-                  <input
-                    className="form-control"
-                    placeholder="Enter Telephone-2"
                     name="telephone"
                     value={newEmployee.telephone}
                     onChange={newEmployeeHandler.bind(this)}
