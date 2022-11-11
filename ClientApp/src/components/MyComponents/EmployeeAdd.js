@@ -25,7 +25,7 @@ export const EmployeeAdd = () => {
         let employeesNewReference = [...employeeList];
         employeesNewReference.push(response.data);
         setEmployeeList(employeesNewReference);
-        setNewEmployee({ name: "", address: "", telephone: "" }); // Clear the state
+        setNewEmployee({ name: "", address: "", telephone: "" }); 
         setShowAlertNewEmployee(true);
       })
       .catch((error) => {
@@ -116,10 +116,10 @@ export const EmployeeAdd = () => {
           danger
           confirmBtnText="Ok"
           confirmBtnBsStyle="success"
-          title="Something wrong happened..."
+          title="Please enter the required info."
           onConfirm={() => setShowAlertError(false)}
         >
-          {alertErrorMessage}
+          Please click on "OK" to close.          
         </SweetAlert>
       )}
     </div>

@@ -21,6 +21,8 @@ export const Employee = (props) => {
         axios.get(URL).then(response => {
             response.data.map(item => { item.isEditing = false; })
             setEmployeeList(response.data);
+            response.data.length == 0 && setShowAlertNoEmployee(true);
+
         }).catch(error => {
             setAlertErrorMessage(error.message);
             setShowAlertError(true);
@@ -71,7 +73,7 @@ export const Employee = (props) => {
     }
 
     /* ALERTS */
-    const [showAlertNewEmployee, setShowAlertNewEmployee] = useState(false);
+    const [showAlertNoEmployee, setShowAlertNoEmployee] = useState(false);
     const [showAlertError, setShowAlertError] = useState(false);
     const [alertErrorMessage, setAlertErrorMessage] = useState('');
 
@@ -114,8 +116,8 @@ export const Employee = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {employeeList.map(item =>
-                                <tr key={item.name}>
+                            {employeeList.map((item, idx)=>
+                                <tr key={idx}>
                                     <td><input className="form-control" value={item.name} onChange={handleEmployeeInputChange.bind(this, item)} name="name" disabled={!item.isEditing} /></td>
                                     <td><input className="form-control" value={item.address} onChange={handleEmployeeInputChange.bind(this, item)} name="address" disabled={!item.isEditing} /></td>
                                     <td><input className="form-control" value={item.telephone} onChange={handleEmployeeInputChange.bind(this, item)} name="telephone" disabled={!item.isEditing} /></td>
@@ -135,12 +137,12 @@ export const Employee = (props) => {
             </div>
 
             {/* ALERT LIBRARY ADDED */}
-            {showAlertNewEmployee &&
-                <SweetAlert success
+            {showAlertNoEmployee &&
+                <SweetAlert danger
                     confirmBtnText="Ok"
                     confirmBtnBsStyle="success"
-                    title="Item successfully added!"
-                    onConfirm={() => setShowAlertNewEmployee(false)} >
+                    title="Opps! There is no employee registered yet!"
+                    onConfirm={() => setShowAlertNoEmployee(false)} >
                     Please click "OK" to close
                 </SweetAlert>
             }
