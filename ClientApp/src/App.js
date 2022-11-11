@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
@@ -18,10 +18,7 @@ import './custom.css';
  </Layout>
  */
 
-export default class App extends Component {
-  static displayName = App.name;
-
-  render() {
+export const App = () =>{
     return (
       <Layout>
         <Routes>
@@ -33,4 +30,3 @@ export default class App extends Component {
       </Layout>
     );
   }
-}
