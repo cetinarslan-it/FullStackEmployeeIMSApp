@@ -1,15 +1,18 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Container } from "reactstrap";
+import loginContext from "../LoginContext";
 import { NavMenu } from "./NavMenu";
 
-export class Layout extends Component {
-  static displayName = Layout.name;
-  render() {
-    return (
-      <div>
+export const Layout = (props) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { Provider } = loginContext;
+
+  return (
+    <div>
+      <Provider value={{isLoggedIn, setIsLoggedIn}}>
         <NavMenu />
-        <Container>{this.props.children}</Container>
-      </div>
-    );
-  }
-}
+        <Container>{props.children}</Container>
+      </Provider>
+    </div>
+  );
+};

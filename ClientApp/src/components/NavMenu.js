@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -12,25 +12,42 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import './NavMenu.css';
+import "./NavMenu.css";
+import SweetAlert from "react-bootstrap-sweetalert";
+import loginContext from "../LoginContext";
 
 export const NavMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const logoutMessage = () => {
+    setLogoutSuccesfull(true);
+  };
+
+  const [logoutSuccesfull, setLogoutSuccesfull] = useState(false);
+  const { isLoggedIn } = useContext(loginContext);
+
   return (
-      <div
-        style={{
-          display: "block",
-          width: "100%",
-          margin: "auto",
-        }}      
+    <div
+      style={{
+        display: "block",
+        width: "100%",
+        margin: "auto",
+      }}
+    >
+      <Navbar
+        dark
+        expand="md"
+        style={{ backgroundColor: "darkred" }}
+        fixed="top"
       >
-        <Navbar dark expand="md" style={{backgroundColor:"darkred" }} fixed="top">
-          <NavbarBrand href="/">Employee Information Management System (EIMS)</NavbarBrand>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar >
+        <NavbarBrand href="/">
+          Employee Information Management System (EIMS)
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        {isLoggedIn && (
+          <Collapse isOpen={isOpen} navbar>
             <Nav className="ms-auto" navbar>
               <NavItem>
                 <NavLink href="/employee">Home</NavLink>
@@ -40,20 +57,38 @@ export const NavMenu = () => {
                   Employee
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem >
-                      <NavLink style={{color:"black"}} href="/employeeAdd">Add</NavLink>
+                  <DropdownItem>
+                    <NavLink style={{ color: "black" }} href="/employeeAdd">
+                      Add
+                    </NavLink>
                   </DropdownItem>
-                  <DropdownItem >
-                     <NavLink style={{color:"black"}} href="/employeeList">List</NavLink>
+                  <DropdownItem>
+                    <NavLink style={{ color: "black" }} href="/employeeList">
+                      List
+                    </NavLink>
                   </DropdownItem>
-                </DropdownMenu>                
+                </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="/">Log out</NavLink>
+                <NavLink href="/" onClick={logoutMessage}>
+                  Log out
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>
-        </Navbar>
-      </div>
+        )}
+      </Navbar>
+      {logoutSuccesfull && (
+        <SweetAlert
+          success
+          confirmBtnText="Ok"
+          confirmBtnBsStyle="success"
+          title="You logged out succesfully!"
+          onConfirm={() => setLogoutSuccesfull(false)}
+        >
+          Please click "OK" to close
+        </SweetAlert>
+      )}
+    </div>
   );
 };
