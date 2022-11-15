@@ -3,18 +3,15 @@ import { Route, Routes } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
 import './custom.css';
+//import { Home } from './components/Home';
 
-/* 
- import { Home } from './components/Home';
- ...
- * 
+ /*
  <Layout>
-   <Route exact path='/' component={Home} />
-   <Route path='/counter' component={Counter} />
-   <Route path='/fetch-data' component={FetchData} />
-   <Route path='/myClassComponent' component={MyClassComponent />
-   <Route path='/myFunctionalComponent' component={MyFunctionalComponent} />
+   <Route exact path='/' component={Auth} />
    <Route path='/Employee' component={Employee} />
+   <Route path='/EmployeeNewAdd' component={EmployeeNewAdd} />
+   <Route path='/EmployeeList' component={EmployeeList />
+   <Route path='/Logout' component={Logout} />
  </Layout>
  */
 
