@@ -1,6 +1,7 @@
 ﻿using EmployeeIMSApp.Services;
 using EmployeeIMSApp.Model.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeIMSApp.Controllers
 {
@@ -31,6 +32,7 @@ namespace EmployeeIMSApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles="admin")]
         public IActionResult AddNewEmployee(Employee employee)
         {
             Employee newEmployee = _employeeService.Save(employee);
@@ -39,6 +41,7 @@ namespace EmployeeIMSApp.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles="admin")]
         public IActionResult UpdateEmployee(Employee employee)
         {
             Employee updatedEmployee = _employeeService.Update(employee);
@@ -46,6 +49,7 @@ namespace EmployeeIMSApp.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles="admin")]
         public IActionResult DeleteEmployee(Employee employee)
         {
             _employeeService.Delete(employee);

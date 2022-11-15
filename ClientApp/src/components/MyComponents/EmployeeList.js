@@ -19,6 +19,7 @@ export const EmployeeList = () => {
         .catch((error) => {
           setAlertErrorMessage(error.message);
           setShowAlertError(true);
+          alert(error.message);
         });
     };
 
@@ -30,7 +31,7 @@ export const EmployeeList = () => {
     let employeesNewReference = [...employeeList]; 
     const index = employeesNewReference.findIndex(
       (item) => item.name == prEmployee.name
-    );
+      );
     const { name, value } = event.target; 
     employeesNewReference[index] = { ...prEmployee, [name]: value }; 
     setEmployeeList(employeesNewReference);

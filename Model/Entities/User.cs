@@ -9,9 +9,15 @@ namespace EmployeeIMSApp.Model.Entities
         [Key]
         public int Id { get; set; }
         [Required]
-        public String Name { get; set; }
+        public string Name { get; set; }
         [Required]
-        public String Email{ get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email{ get; set; }
+        [NotMapped]
+        public List<string> Roles { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
         
     }
 }

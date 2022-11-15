@@ -2,7 +2,7 @@
 using EmployeeIMSApp.Model.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace userIMSApp.Controllers
+namespace EmployeeIMSApp.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
@@ -31,22 +31,21 @@ namespace userIMSApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddNewuser(User user)
+        public IActionResult AddNewUser(User user)
         {
             User newUser = _userService.Save(user);
-            return Ok(newUser); 
-          
+            return Ok(newUser);   
         }
 
         [HttpPut]
-        public IActionResult Updateuser(User user)
+        public IActionResult UpdateUser(User user)
         {
             User updateduser = _userService.Update(user);
             return Ok(updateduser);
         }
 
         [HttpDelete]
-        public IActionResult Deleteuser(User user)
+        public IActionResult DeleteUser(User user)
         {
             _userService.Delete(user);
             return Ok(user);
