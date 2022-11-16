@@ -43,7 +43,7 @@ export const NavMenu = () => {
         fixed="top"
       >
         <NavbarBrand href="/">
-          Employee Information Management System (EIMS)
+          EIMSystem
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         {isLoggedIn && (

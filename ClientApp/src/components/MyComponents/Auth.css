@@ -1,5 +1,6 @@
   .title{
     margin-top:15vh;
+    text-align: center;
   }
   
   .Auth-form-container {
@@ -7,18 +8,20 @@
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-top: 15vh;
   }
 
   .Auth-form {
-    margin-top:10vh;
+    margin:auto 5vh;
     height:400px;
-    width: 420px;
+    width: 450px;
     min-width: 300px;
     box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
     padding-top: 30px;
     padding-bottom: 20px;
     border-radius: 8px;
     background-color: white;
+    border: 1px solid lightgray
   }
 
   .sign-in{
@@ -26,8 +29,8 @@
   }
   
   .Auth-form-content {
-    padding-left: 12%;
-    padding-right: 12%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .Auth-form-title {
@@ -43,3 +46,4 @@
     font-weight: 600;
     color: rgb(34, 34, 34);
   }
+

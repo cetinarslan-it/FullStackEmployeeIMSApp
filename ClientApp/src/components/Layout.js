@@ -4,8 +4,8 @@ import loginContext from "../LoginContext";
 import { NavMenu } from "./NavMenu";
 
 export const Layout = (props) => {
-  
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { Provider } = loginContext;
 
   return (
