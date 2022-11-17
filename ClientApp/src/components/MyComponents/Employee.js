@@ -1,7 +1,7 @@
 ﻿import React, { useState } from "react";
 import axios from "axios";
 import SweetAlert from "react-bootstrap-sweetalert";
-import "./Login.css";
+import "./Employee.css";
 import Unauthorized from "./Unauthorized";
 
 export const Employee = (props) => {
