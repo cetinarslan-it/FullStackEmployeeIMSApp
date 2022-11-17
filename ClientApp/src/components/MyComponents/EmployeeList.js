@@ -78,12 +78,8 @@ export const EmployeeList = () => {
     axios
       .delete(
         "https://localhost:7261/api/Employee/DeleteEmployee",
-        {
-          data: prEmployee,
-        },
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
+        {data: prEmployee, 
+         headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}}
       )
       .then(() => {
         let employeesNewReference = [...employeeList];

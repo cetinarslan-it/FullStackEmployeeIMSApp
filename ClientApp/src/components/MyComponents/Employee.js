@@ -30,8 +30,6 @@ export const Employee = (props) => {
           item.isEditing = false;
         });
         setEmployeeList(response.data);
-
-        console.log(localStorage.getItem("token"));
         response.data.length == 0 && setShowAlertNoEmployee(true);
       })
       .catch((error) => {
@@ -86,12 +84,10 @@ export const Employee = (props) => {
   /* DELETE */
   const deleteEmployee = (prEmployee) => {
     axios
-      .delete(
+      .delete(     
         "https://localhost:7261/api/Employee/DeleteEmployee",
-        { data: prEmployee },
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
+        {data: prEmployee, 
+         headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}}
       )
       .then(() => {
         let employeesNewReference = [...employeeList];
