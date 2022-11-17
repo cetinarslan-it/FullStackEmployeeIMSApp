@@ -9,7 +9,7 @@ export const EmployeeList = () => {
   useEffect(() => {
     const getEmployees = () => {
       axios
-        .get("https://localhost:7261/api/Employee/GetAll")
+        .get("https://localhost:7261/api/Employee/GetAll", { headers: {"Authorization" : `Bearer ${localStorage.getItem("token")}`}})
         .then((response) => {
           response.data.map((item) => {
             item.isEditing = false;
@@ -51,7 +51,7 @@ export const EmployeeList = () => {
   };
   const confirmUpdate = (prEmployee) => {
     axios
-      .put("https://localhost:7261/api/Employee/UpdateEmployee", prEmployee)
+      .put("https://localhost:7261/api/Employee/UpdateEmployee", prEmployee, { headers: {"Authorization" : `Bearer ${localStorage.getItem("token")}`}})
       .then((response) => {
         let employeesNewReference = [...employeeList]; 
         const index = employeesNewReference.findIndex(
@@ -72,8 +72,8 @@ export const EmployeeList = () => {
   const deleteEmployee = (prEmployee) => {
     axios
       .delete("https://localhost:7261/api/Employee/DeleteEmployee", {
-        data: prEmployee,
-      })
+        data: prEmployee
+      }, { headers: {"Authorization" : `Bearer ${localStorage.getItem("token")}`} })
       .then(() => {
         let employeesNewReference = [...employeeList];
         const index = employeesNewReference.findIndex(

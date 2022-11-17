@@ -20,15 +20,14 @@ namespace EmployeeIMSApp.Services
         {
             var claims = new List<Claim>();
 
-            claims.Add(new Claim(ClaimTypes.GivenName, user.FirstName));
-            claims.Add(new Claim(ClaimTypes.Surname, user.LastName));
+            claims.Add(new Claim(ClaimTypes.GivenName, user.FullName));
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
 
             //Loop into roles of users
-            user.Roles.ForEach((role) =>
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            });
+            // user.Roles.ForEach((role) =>
+            // {
+            //     claims.Add(new Claim(ClaimTypes.Role, role));
+            // });
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

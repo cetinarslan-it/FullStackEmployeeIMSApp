@@ -21,14 +21,14 @@ namespace EmployeeIMSApp.Controllers
         [Route("login")]
         public async Task<IActionResult> LoginAsync(LoginRequest loginRequest)
         {
-            var user  = await _loginService.AuthenticateAsync(loginRequest.UserName, loginRequest.Password);
+            var user  = await _loginService.AuthenticateAsync(loginRequest.Email, loginRequest.Password);
             if(user != null)
             {
                var token = await _tokenService.CreateTokenAsync(user);
 
                return Ok(token);
             }
-            return BadRequest("Username or password is incorrect");
+            return BadRequest("Email or password is incorrect");
         }
     }
 }

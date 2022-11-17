@@ -23,7 +23,7 @@ namespace EmployeeIMSApp.Services
 
             if (!string.IsNullOrWhiteSpace(name))
             
-                linq = linq.Where(l => l.Name.ToUpper().Contains(name.ToUpper()));
+                linq = linq.Where(l => l.FullName.ToUpper().Contains(name.ToUpper()));
 
             return linq.ToList();           
         }

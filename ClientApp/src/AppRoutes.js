@@ -1,7 +1,6 @@
 import { Employee } from "./components/MyComponents/Employee";
 import { EmployeeAdd } from "./components/MyComponents/EmployeeAdd";
 import { EmployeeList } from "./components/MyComponents/EmployeeList";
-import { Login } from "./components/MyComponents/Login";
 import { Auth } from "./components/MyComponents/Auth";
 
 
@@ -21,10 +20,6 @@ const AppRoutes = [
   {
     path: '/employeeList',
     element: <EmployeeList/>
-  },
-  {
-    path: '/login',
-    element: <Login/>
   }
 ];
 

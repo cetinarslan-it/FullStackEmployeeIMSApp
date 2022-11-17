@@ -7,6 +7,7 @@ namespace EmployeeIMSApp.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize]
     public class EmployeeController : ControllerBase
     {  
         private readonly IEmployeeService _employeeService;
@@ -32,7 +33,6 @@ namespace EmployeeIMSApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles="admin")]
         public IActionResult AddNewEmployee(Employee employee)
         {
             Employee newEmployee = _employeeService.Save(employee);
@@ -41,7 +41,6 @@ namespace EmployeeIMSApp.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles="admin")]
         public IActionResult UpdateEmployee(Employee employee)
         {
             Employee updatedEmployee = _employeeService.Update(employee);
@@ -49,7 +48,6 @@ namespace EmployeeIMSApp.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles="admin")]
         public IActionResult DeleteEmployee(Employee employee)
         {
             _employeeService.Delete(employee);

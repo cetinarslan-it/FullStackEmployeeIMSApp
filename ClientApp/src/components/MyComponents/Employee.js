@@ -14,13 +14,16 @@ export const Employee = (props) => {
     const handleInputChange = (event) => {
         setSearchName(event.target.value.toString());
     }
+
     const searchItems = () => {
         let URL = searchName !== "" ? ("https://localhost:7261/api/Employee/Search?name=" + searchName)
                                             : "https://localhost:7261/api/Employee/GetAll";
         setSearchName("");
-        axios.get(URL).then(response => {
+        axios.get(URL,{ headers: {"Authorization" : `Bearer ${localStorage.getItem("token")}`}}).then(response => {
             response.data.map(item => { item.isEditing = false; })
             setEmployeeList(response.data);
+
+            console.log(localStorage.getItem("token"))
             response.data.length == 0 && setShowAlertNoEmployee(true);
 
         }).catch(error => {
@@ -50,7 +53,7 @@ export const Employee = (props) => {
         }
     }
     const confirmUpdate = (prEmployee) => {
-        axios.put("https://localhost:7261/api/Employee/UpdateEmployee", prEmployee).then(response => {
+        axios.put("https://localhost:7261/api/Employee/UpdateEmployee", prEmployee, { headers: {"Authorization" : `Bearer ${localStorage.getItem("token")}`} }).then(response => {
             let employeesNewReference = [...employeeList]; // Create a copy of the object with new reference (new space in memory)
             const index = employeesNewReference.findIndex((item) => item.name == prEmployee.name);
             employeesNewReference[index] = prEmployee;
@@ -64,7 +67,7 @@ export const Employee = (props) => {
 
     /* DELETE */
     const deleteEmployee = (prEmployee) => {
-        axios.delete("https://localhost:7261/api/Employee/DeleteEmployee", { data: prEmployee }).then(() => {
+        axios.delete("https://localhost:7261/api/Employee/DeleteEmployee", { data: prEmployee }, { headers: {"Authorization" : `Bearer ${localStorage.getItem("token")}`} }).then(() => {
             let employeesNewReference = [...employeeList];
             const index = employeesNewReference.findIndex((item) => item.name == prEmployee.name);
             employeesNewReference.splice(index, 1); // Remove item from list
@@ -135,7 +138,6 @@ export const Employee = (props) => {
                     </table>
                 </div>
             </div>
-
             {/* ALERT LIBRARY ADDED */}
             {showAlertNoEmployee &&
                 <SweetAlert danger
@@ -146,7 +148,6 @@ export const Employee = (props) => {
                     Please click "OK" to close
                 </SweetAlert>
             }
-
             {/* ALERT ERROR */}
             {showAlertError &&
                 <SweetAlert danger
@@ -157,8 +158,6 @@ export const Employee = (props) => {
                     {alertErrorMessage}
                 </SweetAlert>
             }
-
         </div>
     )
-
 }

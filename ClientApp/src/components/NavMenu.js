@@ -15,18 +15,24 @@ import {
 import "./NavMenu.css";
 import SweetAlert from "react-bootstrap-sweetalert";
 import loginContext from "../LoginContext";
+import { useNavigate } from "react-router-dom";
 
 export const NavMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
+  let navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const logoutMessage = () => {
+  const logoutHandler = (e) => {
+    e.preventDefault();
     setLogoutSuccesfull(true);
+    setIsLoggedIn(false);
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   const [logoutSuccesfull, setLogoutSuccesfull] = useState(false);
-  const { isLoggedIn } = useContext(loginContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(loginContext);
 
   return (
     <div
@@ -46,7 +52,7 @@ export const NavMenu = () => {
           EIMSystem
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        {isLoggedIn && (
+          {(localStorage.getItem("token") !== null) && (
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ms-auto" navbar>
               <NavItem>
@@ -70,7 +76,7 @@ export const NavMenu = () => {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="/" onClick={logoutMessage}>
+                <NavLink href="/" onClick={logoutHandler}>
                   Log out
                 </NavLink>
               </NavItem>
