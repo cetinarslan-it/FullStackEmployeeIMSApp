@@ -121,17 +121,11 @@ export const Auth = () => {
                     required
                   />
                 </div>
-                <div className="d-grid gap-2 mt-3">
+                <div className="d-grid gap-2 mt-5">
                   <button type="submit" className="btn btn-primary">
                     Submit
                   </button>
                 </div>
-                <p className="text-center mt-2">
-                  Forgot{" "}
-                  <a href="#" style={{ textDecoration: "none" }}>
-                    password?
-                  </a>
-                </p>
               </div>
             </form>
           </div>
