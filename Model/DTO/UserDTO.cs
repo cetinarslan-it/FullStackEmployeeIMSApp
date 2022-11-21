@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EmployeeIMSApp.Model.Entities
+namespace EmployeeIMSApp.Model.DTO
 {
-    [Table("User")]
-    public class User
+    [Table("UserRequest")]
+    public class UserDTO
     {
         [Key]
         public int Id { get; set; }
@@ -12,10 +12,6 @@ namespace EmployeeIMSApp.Model.Entities
         public string FullName { get; set; }
         [Required]
         public string Password { get; set; }
-        public string Email{ get; set; }
-        // [NotMapped]
-        // public List<Role> Roles { get; set; }
-
-        public ICollection<User_Role> Users_Roles { get; set; }    
+        public string Email{ get; set; } 
     }
 }

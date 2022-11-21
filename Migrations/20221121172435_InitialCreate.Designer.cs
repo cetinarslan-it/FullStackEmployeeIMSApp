@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeIMSApp.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20221116131722_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20221121172435_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,6 +77,53 @@ namespace EmployeeIMSApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("EmployeeIMSApp.Model.Entities.User_Role", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("User_Role");
+                });
+
+            modelBuilder.Entity("EmployeeIMSApp.Model.Entities.User_Role", b =>
+                {
+                    b.HasOne("EmployeeIMSApp.Model.Entities.Role", "Role")
+                        .WithMany("Users_Roles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EmployeeIMSApp.Model.Entities.User", "User")
+                        .WithMany("Users_Roles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("EmployeeIMSApp.Model.Entities.Role", b =>
+                {
+                    b.Navigation("Users_Roles");
+                });
+
+            modelBuilder.Entity("EmployeeIMSApp.Model.Entities.User", b =>
+                {
+                    b.Navigation("Users_Roles");
                 });
 #pragma warning restore 612, 618
         }

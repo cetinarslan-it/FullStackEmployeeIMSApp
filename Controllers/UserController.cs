@@ -2,54 +2,74 @@
 using EmployeeIMSApp.Model.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
+using EmployeeIMSApp.Model.DTO;
 
 namespace EmployeeIMSApp.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize]
     public class UserController : ControllerBase
     {  
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<User> userList = _userService.GetAll();
-            return Ok(userList);
+            var userList = _userService.GetAll();
+
+            var userListDTO = _mapper.Map<List<Model.DTO.UserDTO>>(userList);
+
+            return Ok(userListDTO);
         }
 
         [HttpGet]
         public IActionResult Search(string name = "")
         {
-           List<User> searchResult= _userService.GetByName(name);
-            return Ok(searchResult);
+           var searchResult= _userService.GetByName(name);
+
+            var searchResultDTO = _mapper.Map<List<Model.DTO.UserDTO>>(searchResult);
+
+            return Ok(searchResultDTO);
                   
         }
 
         [HttpPost]
-        public IActionResult AddNewUser(User user)
+        public IActionResult AddNewUser(UserDTO userDTO)
         {
-            User newUser = _userService.Save(user);
-            return Ok(newUser);   
+            var newUserEntity = _mapper.Map<Model.Entities.User>(userDTO);
+
+            var newUserDTO = _userService.Save(newUserEntity);
+
+            return Ok(newUserDTO);   
         }
 
         [HttpPut]
-        public IActionResult UpdateUser(User user)
+        public IActionResult UpdateUser(UserDTO userDTO)
         {
-            User updateduser = _userService.Update(user);
-            return Ok(updateduser);
+            var updateUserEntity = _mapper.Map<Model.Entities.User>(userDTO);
+
+            var updatedUserDTO = _userService.Update(updateUserEntity);
+
+            return Ok(updatedUserDTO);
         }
 
         [HttpDelete]
-        public IActionResult DeleteUser(User user)
+        public IActionResult DeleteUser(UserDTO userDTO)
         {
-            _userService.Delete(user);
-            return Ok(user);
+            var deleteUserEntity = _mapper.Map<Model.Entities.User>(userDTO);
+
+            _userService.Delete(deleteUserEntity);
+
+            return Ok(userDTO);
         }
     }
 }

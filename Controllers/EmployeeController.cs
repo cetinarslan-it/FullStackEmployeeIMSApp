@@ -8,6 +8,7 @@ namespace EmployeeIMSApp.Controllers
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Authorize]
+   
     public class EmployeeController : ControllerBase
     {  
         private readonly IEmployeeService _employeeService;

@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using EmployeeIMSApp;
 using EmployeeIMSApp.CustomMiddleware;
 using EmployeeIMSApp.Services;
@@ -14,10 +15,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IRoleService, RoleService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 //builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FullStackEmployee")));
 builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 builder.Services.AddSwaggerGen(options =>
 {
     var securityScheme = new OpenApiSecurityScheme

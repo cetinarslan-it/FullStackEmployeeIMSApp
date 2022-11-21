@@ -36,7 +36,6 @@ namespace EmployeeIMSApp.Services
             //             user.Roles.Add(role.Name);
             //         }
             //     }
-
             // }
 
             user.Password = null;

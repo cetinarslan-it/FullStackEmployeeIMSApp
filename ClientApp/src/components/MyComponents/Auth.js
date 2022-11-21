@@ -11,7 +11,7 @@ export const Auth = () => {
   const [succesfullLogin, setSuccesfullLogin] = useState(false);
   const [failedLogin, setFailedLogin] = useState(false);
   let [authMode, setAuthMode] = useState("signin");
-  const { isLoggedIn, setIsLoggedIn } = useContext(loginContext);
+  const setIsLoggedIn  = useContext(loginContext);
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
@@ -64,10 +64,10 @@ export const Auth = () => {
       .then((response) => {
         localStorage.setItem("token", response.data);
         setLoginRequest({ email: "", password: "" });
-        setIsLoggedIn(true);
         navigate("/employee");    
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e.message);
         setFailedLogin(true);
       });
   };
