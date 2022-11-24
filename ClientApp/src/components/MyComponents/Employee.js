@@ -23,7 +23,7 @@ export const Employee = (props) => {
     setSearchName("");
     axios
       .get(URL, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
       })
       .then((response) => {
         response.data.map((item) => {
@@ -64,7 +64,7 @@ export const Employee = (props) => {
   const confirmUpdate = (prEmployee) => {
     axios
       .put("https://localhost:7261/api/Employee/UpdateEmployee", prEmployee, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
       })
       .then((response) => {
         let employeesNewReference = [...employeeList]; // Create a copy of the object with new reference (new space in memory)
@@ -87,7 +87,7 @@ export const Employee = (props) => {
       .delete(     
         "https://localhost:7261/api/Employee/DeleteEmployee",
         {data: prEmployee, 
-         headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}}
+         headers: { Authorization: `Bearer ${localStorage.getItem("Token")}`}}
       )
       .then(() => {
         let employeesNewReference = [...employeeList];
@@ -106,7 +106,7 @@ export const Employee = (props) => {
 
   return (
     <div>
-      {localStorage.getItem("token") === null ? (
+      {localStorage.getItem("Token") === null ? (
         <Unauthorized />
       ) : (
         <div style={{ marginTop: "10vh" }}>

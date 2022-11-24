@@ -17,6 +17,29 @@ namespace EmployeeIMSApp.Services
             return _context.Roles.ToList();
         }
 
+        public async Task<string> GetByEmailAsync(string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(l => l.Email.Contains(email));
+
+            var userRole = _context.Users_Roles.FirstOrDefault(ur => ur.UserId == user.Id);
+
+            //var userRoles = _context.Users_Roles.Where(ur => ur.UserId == user.Id).ToList();
+
+           // var rolesList = new List<string>();
+        
+            // foreach (var userRole in userRoles)
+            // {
+            //     var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
+
+            //     rolesList.Add(role.Name);
+
+            //     Console.WriteLine(role.Name);
+            // }
+
+            var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
+            return role.Name;
+        }
+
         public Role Update(Role role)
         {
             var  roleFromDb = _context.Roles.First(x=>x.Id == role.Id);

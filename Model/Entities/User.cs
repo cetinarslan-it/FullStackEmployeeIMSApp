@@ -13,8 +13,9 @@ namespace EmployeeIMSApp.Model.Entities
         [Required]
         public string Password { get; set; }
         public string Email{ get; set; }
-        // [NotMapped]
-        // public List<Role> Roles { get; set; }
+        
+        [NotMapped]
+        public List<string> Roles { get; set; }
 
         public ICollection<User_Role> Users_Roles { get; set; }    
     }

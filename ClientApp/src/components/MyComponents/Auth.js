@@ -11,7 +11,6 @@ export const Auth = () => {
   const [succesfullLogin, setSuccesfullLogin] = useState(false);
   const [failedLogin, setFailedLogin] = useState(false);
   let [authMode, setAuthMode] = useState("signin");
-  const setIsLoggedIn  = useContext(loginContext);
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
@@ -33,7 +32,7 @@ export const Auth = () => {
     e.preventDefault();
     axios
       .post("https://localhost:7261/api/User/AddNewUser", newUser, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
       })
       .then((response) => {
         console.log(response.data);
@@ -62,13 +61,33 @@ export const Auth = () => {
     axios
       .post("https://localhost:7261/api/Auth/login", loginRequest)
       .then((response) => {
-        localStorage.setItem("token", response.data);
+        localStorage.setItem("Token", response.data);
+        if (response.data !== null) {
+          getRole();
+        }   
         setLoginRequest({ email: "", password: "" });
-        navigate("/employee");    
+        navigate("/employee");
       })
       .catch((e) => {
         console.log(e.message);
         setFailedLogin(true);
+      });
+  };
+
+  const getRole = () => {
+    axios
+      .get(
+        "https://localhost:7261/api/Role/GetRoleByEmail/" + loginRequest.email,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
+        }
+      )
+      .then((response) => {
+        const userRole = response.data;
+        localStorage.setItem("Role", userRole);
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
   };
 

@@ -6,6 +6,7 @@ namespace EmployeeIMSApp.Services
     {
         void Delete(Role role);
         List<Role> GetAll();
+        Task<string> GetByEmailAsync(string email);
         Role Save(Role role);
         Role Update(Role role);
     }

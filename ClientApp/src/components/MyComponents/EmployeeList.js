@@ -11,7 +11,7 @@ export const EmployeeList = () => {
     const getEmployees = () => {
       axios
         .get("https://localhost:7261/api/Employee/GetAll", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
         })
         .then((response) => {
           response.data.map((item) => {
@@ -55,7 +55,7 @@ export const EmployeeList = () => {
   const confirmUpdate = (prEmployee) => {
     axios
       .put("https://localhost:7261/api/Employee/UpdateEmployee", prEmployee, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
       })
       .then((response) => {
         let employeesNewReference = [...employeeList];
@@ -79,7 +79,7 @@ export const EmployeeList = () => {
       .delete(
         "https://localhost:7261/api/Employee/DeleteEmployee",
         {data: prEmployee, 
-         headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}}
+         headers: { Authorization: `Bearer ${localStorage.getItem("Token")}`}}
       )
       .then(() => {
         let employeesNewReference = [...employeeList];
@@ -98,7 +98,7 @@ export const EmployeeList = () => {
 
   return (
     <div>
-      {localStorage.getItem("token") === null ? (
+      {localStorage.getItem("Token") === null ? (
         <Unauthorized />
       ) : (
         <div>

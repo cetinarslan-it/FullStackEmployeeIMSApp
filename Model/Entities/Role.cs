@@ -11,8 +11,6 @@ namespace EmployeeIMSApp.Model.Entities
 
         public string Name { get; set; }
 
-       // public List<User> Users { get; set; }
-
         public ICollection<User_Role> Users_Roles { get; set; }
           
     }

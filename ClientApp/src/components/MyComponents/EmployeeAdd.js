@@ -21,7 +21,7 @@ export const EmployeeAdd = () => {
   const confirmNewEmployee = () => {
     axios
       .post("https://localhost:7261/api/Employee/AddNewEmployee", newEmployee, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
       })
       .then((response) => {
         let employeesNewReference = [...employeeList];
@@ -30,8 +30,9 @@ export const EmployeeAdd = () => {
         setNewEmployee({ name: "", address: "", telephone: "" });
         setShowAlertNewEmployee(true);
       })
-      .catch((error) => {
-        setAlertErrorMessage(error.message);
+      .catch((e) => {
+        console.log(e.message);
+        setAlertErrorMessage(e.message);
         setShowAlertError(true);
       });
   };
@@ -43,7 +44,7 @@ export const EmployeeAdd = () => {
 
   return (
     <div>
-      {localStorage.getItem("token") === null ? (
+      {localStorage.getItem("Token") === null ? (
         <Unauthorized />
       ) : (
         <div>
@@ -109,7 +110,7 @@ export const EmployeeAdd = () => {
               success
               confirmBtnText="Ok"
               confirmBtnBsStyle="success"
-              title="Item successfully added!"
+              title="Something went wrong"
               onConfirm={() => setShowAlertNewEmployee(false)}
             >
               Please click "OK" to close
