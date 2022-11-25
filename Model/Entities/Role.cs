@@ -1,17 +1,19 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeIMSApp.Model.Entities
 {
-    [Table("Role")]
     public class Role
     {
-        [Key]
-        public int Id { get; set; }
+        public Role()
+        {
+            this.Users = new HashSet<User>();
+        }
 
-        public string Name { get; set; }
+        public int RoleId { get; set; }
+        [Required]
+        public string RoleName { get; set; }
 
-        public ICollection<User_Role> Users_Roles { get; set; }
-          
+        public virtual ICollection<User> Users { get; set; }
     }
+
 }

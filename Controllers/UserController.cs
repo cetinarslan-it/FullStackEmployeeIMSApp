@@ -9,8 +9,6 @@ namespace EmployeeIMSApp.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-   // [Authorize(Roles ="admin")]
-  
     public class UserController : ControllerBase
     {  
         private readonly IUserService _userService;

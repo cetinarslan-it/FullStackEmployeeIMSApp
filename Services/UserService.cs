@@ -24,14 +24,14 @@ namespace EmployeeIMSApp.Services
 
             if (!string.IsNullOrWhiteSpace(name))
 
-                linq = linq.Where(l => l.FullName.ToUpper().Contains(name.ToUpper()));
+                linq = linq.Where(l => l.UserName.ToUpper().Contains(name.ToUpper()));
 
             return linq.ToList();
         }
 
         public User Update(User user)
         {
-            User userFromDb = _context.Users.First(x => x.Id == user.Id);
+            User userFromDb = _context.Users.First(x => x.UserId == user.UserId);
             _context.Entry(userFromDb).CurrentValues.SetValues(user);
             _context.SaveChanges();
 

@@ -10,7 +10,7 @@ namespace EmployeeIMSApp.Services
     public class TokenService : ITokenService
     {
         private readonly IConfiguration _configuration;
-   
+
         public TokenService(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -20,13 +20,11 @@ namespace EmployeeIMSApp.Services
         {
             var claims = new List<Claim>();
 
-            claims.Add(new Claim(ClaimTypes.GivenName, user.FullName));
+            claims.Add(new Claim(ClaimTypes.GivenName, user.UserName));
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
 
-            //Loop into roles of users
-            user.Roles.ForEach((role) =>
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
+            user.Roles.ToList().ForEach(r => {
+                claims.Add(new Claim(ClaimTypes.Role, r.RoleName));
             });
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

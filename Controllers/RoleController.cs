@@ -9,7 +9,7 @@ namespace EmployeeIMSApp.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [Authorize(Roles ="admin")]
+  
     public class RoleController : ControllerBase
     {  
         private readonly IRoleService _roleService;
@@ -31,13 +31,13 @@ namespace EmployeeIMSApp.Controllers
             return Ok(roleListDTO);
         }
 
-        [HttpGet("{email}")]
-        public async Task<IActionResult> GetRoleByEmailAsync(string email)
-        {
-           var roleName= await _roleService.GetByEmailAsync(email);
+        // [HttpGet("{email}")]
+        // public async Task<IActionResult> GetRoleByEmailAsync(string email)
+        // {
+        //    var roleName= await _roleService.GetByEmailAsync(email);
 
-           return Ok(roleName);                 
-        }
+        //    return Ok(roleName);                 
+        // }
 
         [HttpPost]
         public IActionResult AddNewRole(RoleDTO roleDTO)

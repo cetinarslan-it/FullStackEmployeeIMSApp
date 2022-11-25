@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EmployeeIMSApp.Model.Entities;
 
 namespace EmployeeIMSApp.Model.DTO
 {
@@ -7,9 +8,9 @@ namespace EmployeeIMSApp.Model.DTO
     public class RoleDTO
     {
         [Key]
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-          
+        public int RoleId { get; set; }
+        [Required]
+        public string RoleName { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

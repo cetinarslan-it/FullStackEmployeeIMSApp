@@ -14,35 +14,35 @@ namespace EmployeeIMSApp.Services
         }
         public List<Role> GetAll()
         {
-            return _context.Roles.ToList();
+            return _context.Roles.Include(r=>r.Users).ToList();
         }
 
-        public async Task<string> GetByEmailAsync(string email)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(l => l.Email.Contains(email));
+        // public async Task<string> GetByEmailAsync(string email)
+        // {
+        //     var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.Contains(email));
 
-            var userRole = _context.Users_Roles.FirstOrDefault(ur => ur.UserId == user.Id);
+        //     var role = _context.Roles.FirstOrDefault(r => r.Users == user.Id);
 
-            //var userRoles = _context.Users_Roles.Where(ur => ur.UserId == user.Id).ToList();
+        //     //var userRoles = _context.Users_Roles.Where(ur => ur.UserId == user.Id).ToList();
 
-           // var rolesList = new List<string>();
+        //    // var rolesList = new List<string>();
         
-            // foreach (var userRole in userRoles)
-            // {
-            //     var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
+        //     // foreach (var userRole in userRoles)
+        //     // {
+        //     //     var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
 
-            //     rolesList.Add(role.Name);
+        //     //     rolesList.Add(role.Name);
 
-            //     Console.WriteLine(role.Name);
-            // }
+        //     //     Console.WriteLine(role.Name);
+        //     // }
 
-            var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
-            return role.Name;
-        }
+        //     var role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
+        //     return role.Name;
+        // }
 
         public Role Update(Role role)
         {
-            var  roleFromDb = _context.Roles.First(x=>x.Id == role.Id);
+            var  roleFromDb = _context.Roles.First(x=>x.RoleId == role.RoleId);
             _context.Entry(roleFromDb).CurrentValues.SetValues(role);
             _context.SaveChanges();
 
@@ -65,7 +65,6 @@ namespace EmployeeIMSApp.Services
 
             return role;
         }
-       
     }
 
 }

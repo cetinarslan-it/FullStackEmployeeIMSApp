@@ -41,22 +41,22 @@ namespace EmployeeIMSApp.Migrations
 
             modelBuilder.Entity("EmployeeIMSApp.Model.Entities.Role", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("RoleName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("RoleId");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("EmployeeIMSApp.Model.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -64,66 +64,47 @@ namespace EmployeeIMSApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("User");
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("EmployeeIMSApp.Model.Entities.User_Role", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("RolesRoleId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int>("UsersUserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("Id")
-                        .HasColumnOrder(0);
+                    b.HasKey("RolesRoleId", "UsersUserId");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasIndex("UsersUserId");
 
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("User_Role");
+                    b.ToTable("RoleUser");
                 });
 
-            modelBuilder.Entity("EmployeeIMSApp.Model.Entities.User_Role", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.HasOne("EmployeeIMSApp.Model.Entities.Role", "Role")
-                        .WithMany("Users_Roles")
-                        .HasForeignKey("RoleId")
+                    b.HasOne("EmployeeIMSApp.Model.Entities.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesRoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EmployeeIMSApp.Model.Entities.User", "User")
-                        .WithMany("Users_Roles")
-                        .HasForeignKey("UserId")
+                    b.HasOne("EmployeeIMSApp.Model.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("EmployeeIMSApp.Model.Entities.Role", b =>
-                {
-                    b.Navigation("Users_Roles");
-                });
-
-            modelBuilder.Entity("EmployeeIMSApp.Model.Entities.User", b =>
-                {
-                    b.Navigation("Users_Roles");
                 });
 #pragma warning restore 612, 618
         }
